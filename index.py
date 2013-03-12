@@ -99,8 +99,7 @@ def fetch_list(email=''):
 
     list = user['list']
 
-    for item in list:
-        print item['pid'] + ', ' + item['mid'] + '/n'
+    return json.dumps({"items":list})
         
         
     
