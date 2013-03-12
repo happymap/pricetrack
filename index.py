@@ -85,6 +85,27 @@ def add_newprice():
         print "Unexpected error:", sys.exc_info()[0]
         
 
+# fecth a user's wishing list
+@bottle.route('/:email')
+def fetch_list(email=''):
+    connection = pymongo.Connection(connection_string, safe=True)
+    db = connection.pricetrack
+    users = db.users
+
+    user = users.find_one({"email":email})
+
+    if user == None:
+        print "No such a user exists"
+
+    list = user['list']
+
+    for item in list:
+        print item['pid'] + ', ' + item['mid'] + '/n'
+        
+        
+    
+
+
 # get a new price
 def fetch_newprice(pid, mid):
     #pid = '11972006473052128578'
