@@ -8,6 +8,7 @@ import datetime
 connection_string = "mongodb://localhost"
 
 # search google shopping API
+@bottle.route('/:key')
 def index(key=''):
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.blog
