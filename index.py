@@ -86,7 +86,7 @@ def add_newprice():
         
 
 # fecth a user's wishing list
-@bottle.route('/:email')
+@bottle.route('/wishlist/:email')
 def fetch_list(email=''):
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
