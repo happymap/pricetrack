@@ -85,7 +85,7 @@ def add_newprice():
 
     price = fetch_newprice(pid, mid)
 
-    item = items.find_one("pid":pid,"mid":mid)
+    item = items.find_one({"pid":pid,"mid":mid})
     if item == None:
         print "No such item"
         try:
