@@ -106,7 +106,7 @@ def add_newprice():
             print "Unexpected error:", sys.exc_info()[0]
 
     try:
-        items.update({"pid":pid,"mid":mid},{$push:{"records":{"price":price,"date":datetime.datetime.utcnow()}}})
+        items.update({"pid":pid,"mid":mid},{"$push":{"records":{"price":price,"date":datetime.datetime.utcnow()}}})
         print "Add new price"
 
     except:
