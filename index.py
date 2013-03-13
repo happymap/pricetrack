@@ -133,7 +133,7 @@ def fetch_list(email=''):
         pid  = item['pid']
         mid = item['mid']
         product = items.find_one({"pid":pid,"mid":mid})
-        wishlist.append(json.dumps(product))
+        wishlist.append(product)
 
     return json.dumps({"items":wishlist})  
 
