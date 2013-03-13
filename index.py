@@ -70,14 +70,43 @@ def add_newprice():
     pid = bottle.request.forms.get("pid")
     mid = bottle.request.forms.get("mid")
     
+    merchant_name = bottle.request.forms.get("merchant_name")
+    title = bottle.request.forms.get("title")
+    description = bottle.request.forms.get("description")
+    link = bottle.request.forms.get("link")
+    condition = bottle.request.forms.get("condition")
+    price = bottle.request.forms.get("price")
+    image_link = bottle.request.forms.get("image_link")
+    status = bottle.request.forms.get("status")
+    
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
     items = db.items
 
     price = fetch_newprice(pid, mid)
 
+    item = items.find_one("pid":pid,"mid":mid)
+    if item == None:
+        print "No such item"
+        try:
+            items.insert({"pid":pid,
+                          "mid":mid,
+                          "merchant_name":merchant_name,
+                          "title":title,
+                          "description":description,
+                          "link":link,
+                          "condition":condition,
+                          "records":[],
+                          "image_link":image_link,
+                          "status":status})
+            print "insert an item"
+
+        except:
+            print "Error and item"
+            print "Unexpected error:", sys.exc_info()[0]
+
     try:
-        items.insert({"pid":pid,"mid":mid,"price":price,"date":datetime.datetime.utcnow()})
+        items.update({"pid":pid,"mid":mid},{$push:{"records":{"price":price,"date":datetime.datetime.utcnow()}}})
         print "Add new price"
 
     except:
@@ -91,6 +120,7 @@ def fetch_list(email=''):
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
     users = db.users
+    items = db.items
 
     user = users.find_one({"email":email})
 
@@ -98,11 +128,13 @@ def fetch_list(email=''):
         print "No such a user exists"
 
     list = user['list']
+    for item in list:
+        pid  = item['pid']
+        mid = item['mid']
+        product = items.find_one("pid":pid,"mid":mid)
+        wishlist.append(product)
 
-    return json.dumps({"items":list})
-        
-        
-    
+    return json.dumps({"items":wishlist})  
 
 
 # get a new price
