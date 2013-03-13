@@ -127,6 +127,7 @@ def fetch_list(email=''):
     if user == None:
         print "No such a user exists"
 
+    wishlist = []
     list = user['list']
     for item in list:
         pid  = item['pid']
