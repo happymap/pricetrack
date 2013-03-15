@@ -135,7 +135,7 @@ def fetch_list(email=''):
         pid  = item['pid']
         mid = item['mid']
         product = fetch_item(pid,mid)
-        if prodcut != None:
+        if product != None:
             pro = {'link':product['link'],
                'pid': pid,
                'mid': mid}
