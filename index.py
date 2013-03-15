@@ -129,13 +129,19 @@ def fetch_list(email=''):
 
     wishlist = []
     list = user['list']
+
+    
     for item in list:
         pid  = item['pid']
         mid = item['mid']
-        product = items.find_one({"pid":pid,"mid":mid})
-        wishlist.append(product)
+        product = fetch_item(pid,mid)
+        pro = {'link':product['link'],
+               'pid': pid,
+               'mid': mid}
+        wishlist.append(pro)
 
-    return json.dumps({"items":wishlist})  
+    return json.dumps({"items":wishlist})
+   
 
 
 # get a new price
@@ -148,5 +154,14 @@ def fetch_newprice(pid, mid):
     json_data = json.load(data)
     return json_data['product']['inventories'][0]['price']
 
+# get a product item
+def fetch_item(pid, mid):
+    connection = pymongo.Connection(connection_string, safe=True)
+    db = connection.pricetrack
+    items = db.items
+
+    product = items.find_one({"pid":pid,"mid":mid})
+    
+    return product
 
 run(host='0.0.0.0',port=8080)
