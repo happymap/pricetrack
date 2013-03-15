@@ -135,10 +135,11 @@ def fetch_list(email=''):
         pid  = item['pid']
         mid = item['mid']
         product = fetch_item(pid,mid)
-        pro = {'link':product['link'],
+        if prodcut != None:
+            pro = {'link':product['link'],
                'pid': pid,
                'mid': mid}
-        wishlist.append(pro)
+            wishlist.append(pro)
 
     return json.dumps({"items":wishlist})
    
@@ -161,6 +162,9 @@ def fetch_item(pid, mid):
     items = db.items
 
     product = items.find_one({"pid":pid,"mid":mid})
+
+    if product == None:
+        print "no such a product"
     
     return product
 
