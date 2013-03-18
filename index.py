@@ -60,6 +60,8 @@ def post_newitem():
     status = bottle.request.forms.get("status")
     price = bottle.request.forms.get("price")
 
+    print "merchant_name:"+merchant_name
+
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
     users = db.users
