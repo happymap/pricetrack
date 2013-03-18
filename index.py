@@ -51,6 +51,14 @@ def post_newitem():
     email = bottle.request.forms.get("email")
     productId = bottle.request.forms.get("productid")
     merchantId = bottle.request.forms.get("merchantid")
+    link = bottle.request.forms.get("link")
+    image_link = bottle.request.forms.get("image_link")
+    title = bottle.request.forms.get("title")
+    description = bottle.request.forms.get("description")
+    condition = bottle.request.forms.get("condition")
+    merchant_name = bottle.request.forms.get("merchant_name")
+    status = bottle.request.forms.get("status")
+    price = bottle.request.forms.get("price")
 
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
@@ -62,7 +70,16 @@ def post_newitem():
 
         item = items.find_one({"mid":merchantId, "pid":productId})
         if item == None:
-            items.insert({"pid":productId, "mid":merchantId, "link":"www.google.com"})
+            items.insert({"pid":productId,
+                          "mid":merchantId,
+                          "link":link,
+                          "image_link":image_link,
+                          "title":title,
+                          "description":description,
+                          "condition":condition,
+                          "merchant_name":merchant_name,
+                          "status":status,
+                          "price":[]})
 
         print "Add new productId"
 
