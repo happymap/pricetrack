@@ -95,13 +95,13 @@ def add_newprice():
     pid = bottle.request.forms.get("pid")
     mid = bottle.request.forms.get("mid")
     
-    merchant_name = bottle.request.forms.get("merchant_name")
+    merchant_name = bottle.request.forms.get("merchantname")
     title = bottle.request.forms.get("title")
     description = bottle.request.forms.get("description")
     link = bottle.request.forms.get("link")
     condition = bottle.request.forms.get("condition")
     price = bottle.request.forms.get("price")
-    image_link = bottle.request.forms.get("image_link")
+    image_link = bottle.request.forms.get("imagelink")
     status = bottle.request.forms.get("status")
     
     connection = pymongo.Connection(connection_string, safe=True)
@@ -164,11 +164,11 @@ def fetch_list(email=''):
             pro = {'link':product['link'],
                    'pid': pid,
                    'mid': mid,
-                   'imagelink':product['image_link'],
+                   'imagelink':product['imagelink'],
                    'status':product['status'],
                    'price':product['price'],
                    'title':product['title'],
-                   'merchantname':product['merchant_name'],
+                   'merchantname':product['merchantname'],
                    'description':product['description'],
                    'condition':product['condition']}
             wishlist.append(pro)
