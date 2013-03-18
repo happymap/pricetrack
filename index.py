@@ -45,7 +45,7 @@ def post_newuser():
         print "Error inserting user"
         print "Unexpected error:", sys.exc_info()[0]
 
-# insert a new item into wishing list
+#insert a new item into wishing list
 @bottle.post('/newitem')
 def post_newitem():
     email = bottle.request.forms.get("email")
@@ -55,9 +55,15 @@ def post_newitem():
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.pricetrack
     users = db.users
+    items = db.items
 
     try:
         users.update({"email":email},{"$push":{"list":{"pid":productId, "mid":merchantId}}})
+
+        item = items.find_one({"mid":merchantId, "pid":productId})
+        if item == None:
+            items.insert({"pid":product, "mid":merchantId, "link":"www.google.com"})
+
         print "Add new productId"
 
     except:
