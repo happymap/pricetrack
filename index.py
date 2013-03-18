@@ -52,11 +52,11 @@ def post_newitem():
     productId = bottle.request.forms.get("productid")
     merchantId = bottle.request.forms.get("merchantid")
     link = bottle.request.forms.get("link")
-    image_link = bottle.request.forms.get("image_link")
+    image_link = bottle.request.forms.get("imagelink")
     title = bottle.request.forms.get("title")
     description = bottle.request.forms.get("description")
     condition = bottle.request.forms.get("condition")
-    merchant_name = bottle.request.forms.get("merchant_name")
+    merchant_name = bottle.request.forms.get("merchantname")
     status = bottle.request.forms.get("status")
     price = bottle.request.forms.get("price")
 
