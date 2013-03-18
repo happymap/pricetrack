@@ -62,7 +62,7 @@ def post_newitem():
 
         item = items.find_one({"mid":merchantId, "pid":productId})
         if item == None:
-            items.insert({"pid":product, "mid":merchantId, "link":"www.google.com"})
+            items.insert({"pid":productId, "mid":merchantId, "link":"www.google.com"})
 
         print "Add new productId"
 
