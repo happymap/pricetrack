@@ -162,8 +162,15 @@ def fetch_list(email=''):
         product = fetch_item(pid,mid)
         if product != None:
             pro = {'link':product['link'],
-               'pid': pid,
-               'mid': mid}
+                   'pid': pid,
+                   'mid': mid,
+                   'image_link':product['image_link'],
+                   'status':product['status'],
+                   'price':product['price'],
+                   'title':product['title'],
+                   'merchant_name':product['merchant_name'],
+                   'description':product['description'],
+                   'condition':product['condition']}
             wishlist.append(pro)
 
     return json.dumps({"items":wishlist})
