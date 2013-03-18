@@ -164,11 +164,11 @@ def fetch_list(email=''):
             pro = {'link':product['link'],
                    'pid': pid,
                    'mid': mid,
-                   'imagelink':product['imagelink'],
+                   'image_link':product['imagelink'],
                    'status':product['status'],
                    'price':product['price'],
                    'title':product['title'],
-                   'merchantname':product['merchantname'],
+                   'merchant_name':product['merchantname'],
                    'description':product['description'],
                    'condition':product['condition']}
             wishlist.append(pro)
