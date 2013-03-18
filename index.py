@@ -75,11 +75,11 @@ def post_newitem():
             items.insert({"pid":productId,
                           "mid":merchantId,
                           "link":link,
-                          "image_link":image_link,
+                          "imagelink":image_link,
                           "title":title,
                           "description":description,
                           "condition":condition,
-                          "merchant_name":merchant_name,
+                          "merchantname":merchant_name,
                           "status":status,
                           "price":[]})
 
@@ -164,11 +164,11 @@ def fetch_list(email=''):
             pro = {'link':product['link'],
                    'pid': pid,
                    'mid': mid,
-                   'image_link':product['image_link'],
+                   'imagelink':product['image_link'],
                    'status':product['status'],
                    'price':product['price'],
                    'title':product['title'],
-                   'merchant_name':product['merchant_name'],
+                   'merchantname':product['merchant_name'],
                    'description':product['description'],
                    'condition':product['condition']}
             wishlist.append(pro)
